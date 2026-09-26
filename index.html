@@ -311,6 +311,31 @@
       padding: 30px 0 45px;
     }
 
+    .animated-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #1877f2;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  animation: badgePulse 1.5s infinite;
+}
+
+@keyframes badgePulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 5px #1877f2;
+  }
+  50% {
+    transform: scale(1.15);
+    box-shadow: 0 0 14px #1877f2;
+  }
+}
+
     /* =========================
        ANIME FIGURES
        ========================= */
@@ -440,10 +465,9 @@
         </p>
 
         <div class="meta">
-          <div class="meta-box">
-            <span class="label">Name</span>
-            <span class="value">Saran</span>
-          </div>
+          <div class="name">
+  Saran <span class="animated-badge">✓</span>
+</div>
           <div class="meta-box">
             <span class="label">Role</span>
             <span class="value">Developer / Coder</span>
