@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#08090d">
+  <title>Saran | Developer</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+
+    :root {
+      --bg: #08090d;
+      --card: #101219;
+      --text: #f5f7ff;
+      --muted: #a6adbd;
+      --line: rgba(255,255,255,.18);
+      --accent: #8b7cff;
+      --accent2: #66e3ff;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      min-height: 100vh;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 15% 10%, rgba(139,124,255,.13), transparent 28%),
+        radial-gradient(circle at 85% 80%, rgba(102,227,255,.08), transparent 30%),
+        var(--bg);
+      font-family: "Space Mono", monospace;
+      overflow-x: hidden;
+    }
+
+    .wrap {
+      width: min(1050px, calc(100% - 32px));
+      margin: auto;
+    }
+
+    header {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 40px 0 70px;
+    }
+
+    .hero {
+      width: 100%;
+      position: relative;
+      padding: clamp(28px, 7vw, 80px);
+      border: 1.5px solid var(--line);
+      background: rgba(16,18,25,.65);
+      backdrop-filter: blur(12px);
+      box-shadow: 10px 10px 0 rgba(255,255,255,.025);
+    }
+
+    .scribble {
+      position: absolute;
+      inset: 8px;
+      border: 1px solid rgba(139,124,255,.25);
+      pointer-events: none;
+      transform: rotate(-.25deg);
+    }
+
+    .tag {
+      display: inline-block;
+      color: var(--accent2);
+      border: 1px solid rgba(102,227,255,.35);
+      padding: 7px 11px;
+      font-size: 11px;
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      font-size: clamp(44px, 10vw, 92px);
+      line-height: .95;
+      letter-spacing: -4px;
+      margin-bottom: 28px;
+    }
+
+    h1 span {
+      color: var(--accent);
+    }
+
+    .intro {
+      max-width: 720px;
+      color: var(--muted);
+      line-height: 1.9;
+      font-size: clamp(13px, 2vw, 16px);
+    }
+
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 38px;
+      max-width: 650px;
+    }
+
+    .meta-box {
+      border: 1px solid var(--line);
+      padding: 17px;
+      background: rgba(255,255,255,.02);
+    }
+
+    .label {
+      display: block;
+      color: #747b8e;
+      font-size: 10px;
+      margin-bottom: 7px;
+      text-transform: uppercase;
+    }
+
+    .value { font-size: 14px; }
+
+    section {
+      padding: 90px 0;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 35px;
+    }
+
+    .section-title h2 {
+      font-size: clamp(25px, 5vw, 42px);
+      letter-spacing: -2px;
+    }
+
+    .section-title::after {
+      content: "";
+      height: 1px;
+      flex: 1;
+      background: var(--line);
+    }
+
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .skill {
+      padding: 13px 16px;
+      border: 1px solid var(--line);
+      background: var(--card);
+      transition: .2s ease;
+    }
+
+    .skill:hover {
+      transform: translate(-3px,-3px);
+      border-color: var(--accent);
+      box-shadow: 4px 4px 0 var(--accent);
+    }
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .project {
+      min-height: 220px;
+      padding: 24px;
+      border: 1px solid var(--line);
+      background: linear-gradient(145deg, rgba(255,255,255,.045), rgba(255,255,255,.015));
+      position: relative;
+      transition: .25s ease;
+    }
+
+    .project:hover {
+      transform: translateY(-5px);
+      border-color: rgba(139,124,255,.6);
+    }
+
+    .number {
+      color: var(--accent);
+      font-size: 12px;
+      margin-bottom: 45px;
+    }
+
+    .project h3 {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .project p {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    .project a {
+      display: inline-block;
+      margin-top: 18px;
+      color: var(--text);
+      text-decoration: none;
+      border-bottom: 1px solid var(--accent);
+      padding-bottom: 3px;
+      font-size: 12px;
+    }
+
+    .about {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 25px;
+    }
+
+    .about-card {
+      border: 1px solid var(--line);
+      padding: 28px;
+      background: var(--card);
+    }
+
+    .about-card p {
+      color: var(--muted);
+      line-height: 2;
+      font-size: 13px;
+    }
+
+    .contact {
+      text-align: center;
+      border: 1px solid var(--line);
+      padding: 60px 25px;
+      background: var(--card);
+    }
+
+    .contact h2 {
+      font-size: clamp(30px, 6vw, 55px);
+      margin-bottom: 15px;
+    }
+
+    .contact p {
+      color: var(--muted);
+      margin-bottom: 25px;
+    }
+
+    .btn {
+      display: inline-block;
+      color: #08090d;
+      background: var(--text);
+      text-decoration: none;
+      padding: 13px 20px;
+      font-weight: 700;
+      font-size: 12px;
+      transition: .2s;
+    }
+
+    .btn:hover {
+      background: var(--accent);
+      color: white;
+      transform: translateY(-2px);
+    }
+    
+    .btn-card {
+      text-align: center;
+      margin: 0 0 30px;
+    }
+
+    .btn-card h2 {
+      font-size: clamp(25px, 5vw, 42px);
+      letter-spacing: -2px;
+      margin-bottom: 22px;
+    }
+
+    .btn-neonflicker {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 22px;
+      background: #050b10;
+      color: #ffffff !important;
+      border: 2px solid #00ffff;
+      border-radius: 8px;
+      text-decoration: none !important;
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: .5px;
+      text-shadow: 0 0 4px #ffffff, 0 0 9px #00ffff;
+      box-shadow: 0 0 5px #00ffff, 0 0 14px rgba(0,255,255,.55), inset 0 0 7px rgba(0,255,255,.18);
+      animation: neonFlickerBtn 3s infinite;
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+    }
+
+    .btn-neonflicker:hover {
+      color: #ffffff !important;
+      background: rgba(0,255,255,.08);
+      transform: translateY(-2px);
+      box-shadow: 0 0 8px #00ffff, 0 0 22px #00ffff, 0 0 38px rgba(0,255,255,.6);
+    }
+
+    @keyframes neonFlickerBtn {
+      0%, 18%, 22%, 63%, 64%, 100% {
+        opacity: 1;
+        box-shadow: 0 0 5px #00ffff, 0 0 14px rgba(0,255,255,.55), inset 0 0 7px rgba(0,255,255,.18);
+      }
+      20%, 21%, 62% {
+        opacity: .95;
+        box-shadow: 0 0 2px #00ffff, inset 0 0 3px rgba(0,255,255,.12);
+      }
+    }
+
+    footer {
+      color: #666d7d;
+      font-size: 10px;
+      text-align: center;
+      padding: 30px 0 45px;
+    }
+    @media (max-width: 700px) {
+      .meta, .projects, .about { grid-template-columns: 1fr; }
+      header { min-height: auto; padding-top: 25px; }
+      .hero { padding: 35px 22px; }
+      h1 { letter-spacing: -2px; }
+      section { padding: 65px 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <header id="home">
+    <div class="wrap">
+      <div class="hero">
+        <div class="scribble"></div>
+        <div class="tag">PORTFOLIO / 2026</div>
+
+        <h1>WELCOME<span>.</span></h1>
+
+        <p class="intro">
+          Hi, I'm <strong>Saran</strong> — a developer and coder who enjoys
+          building websites, bots, games and useful digital projects.
+        </p>
+
+        <div class="meta">
+          <div class="meta-box">
+            <span class="label">Name</span>
+            <span class="value">Saran</span>
+          </div>
+          <div class="meta-box">
+            <span class="label">Role</span>
+            <span class="value">Developer / Coder</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="skills">
+      <div class="wrap">
+        <div class="section-title">
+          <h2>SKILLS</h2>
+        </div>
+
+        <div class="skills">
+          <div class="skill">HTML</div>
+          <div class="skill">CSS</div>
+          <div class="skill">JavaScript</div>
+          <div class="skill">Python</div>
+          <div class="skill">Telegram Bots</div>
+          <div class="skill">Web Development</div>
+          <div class="skill">Git & GitHub</div>
+          <div class="skill">Vercel</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="wrap">
+        <div class="section-title">
+          <h2>MY PROJECTS</h2>
+        </div>
+
+        <div class="projects">
+          <article class="project">
+            <div class="number">PROJECT_01</div>
+            <h3>AnimeNetwork</h3>
+            <p>Anime-focused web and Telegram projects with a clean streaming-style experience.</p>
+            <a href="https://my-web-ten-orcin.vercel.app/">VIEW PROJECT →</a>
+          </article>
+
+          <article class="project">
+            <div class="number">PROJECT_02</div>
+            <h3>Link Share Bot</h3>
+            <p>A Telegram bot project designed to manage and share channel links.</p>
+            <a href="https://t.me/AnimeNetworkTamillinkbot?start=bot">VIEW PROJECT →</a>
+          </article>
+
+          <article class="project">
+            <div class="number">PROJECT_03</div>
+            <h3>Coin Collector Game 🪙</h3>
+            <p>A lightweight browser game project built for quick, fun gameplay.</p>
+            <a href="https://coin-collector-game-seven.vercel.app">VIEW PROJECT →</a>
+          </article>
+
+          <article class="project">
+            <div class="number">PROJECT_04</div>
+            <h3>AI Assistant</h3>
+            <p>A personal assistant web project exploring AI-powered interactions.</p>
+            <a href="https://jarvis-ai-psi-pied.vercel.app/?">VIEW PROJECT →</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="wrap">
+        <div class="btn-card">
+          <h2>About Me</h2>
+          <a class="btn-neonflicker" href="https://about-saran-seven.vercel.app/">About Me ⚡</a>
+        </div>
+
+        <div class="about-card">
+          <p>
+            CURRENT FOCUS<br><br>
+            → Web Development<br>
+            → Python<br>
+            → Bots & Automation<br>
+            → Creative Projects
+          </p>
+        </div>
+      </div>
+    </section>
+
+  <footer>
+    © 2026 Saran · Built with HTML & CSS
+  </footer>
+
+</body>
+</html>
